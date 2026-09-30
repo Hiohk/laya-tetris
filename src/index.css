@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    border-color: #d3e5f7;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-cloud-100 font-nunito font-medium text-candy-ink antialiased;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+    background-image:
+      radial-gradient(720px 480px at 8% -6%, rgba(62, 199, 240, 0.4), transparent 62%),
+      radial-gradient(620px 460px at 96% 4%, rgba(180, 124, 247, 0.3), transparent 64%),
+      radial-gradient(760px 540px at 46% 106%, rgba(79, 217, 139, 0.28), transparent 62%),
+      linear-gradient(180deg, #edf6ff 0%, #dfeeff 55%, #d6e9ff 100%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(62, 199, 240, 0.3);
+    color: #0b2a44;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@layer components {
+  /* 卡片：接近纯白、描边清晰，保证文字对比度 */
+  .panel {
+    @apply relative rounded-[24px] border border-candy-line bg-white/95 shadow-lite backdrop-blur-md;
+  }
+
+  .panel-flat {
+    @apply rounded-[16px] border border-candy-line bg-cloud-50;
+  }
+
+  .hairline {
+    @apply border-b border-candy-line;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-candy-line bg-cloud-50 px-2.5 py-1 font-fun text-[12px] font-bold text-candy-muted;
+  }
+
+  .stat-value {
+    @apply font-fun text-[25px] font-bold leading-none tracking-tight text-candy-ink;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .label-key {
+    @apply font-fun text-[12px] font-bold tracking-[0.04em] text-candy-muted;
+  }
+
+  /* 3D 黏土按钮 */
+  .clay {
+    @apply border border-candy-line bg-white shadow-clay transition-all duration-100 ease-out;
+  }
+
+  .clay:active {
+    @apply translate-y-[3px] shadow-clay-pressed;
+  }
+
+  /* 亮色糖果底 + 深色文字：比白字清楚得多 */
+  .clay-primary {
+    @apply border-white/80 bg-gradient-to-b from-[#5FD3F6] to-[#2BA9DA] text-candy-deep shadow-clay;
+  }
+
+  .clay-primary:active {
+    @apply translate-y-[3px] shadow-clay-pressed;
+  }
+
+  .connector-line {
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(43, 169, 218, 0.5) 0px,
+      rgba(43, 169, 218, 0.5) 5px,
+      transparent 5px,
+      transparent 10px
+    );
+  }
+
+  /* 按钮表面的一道柔光 */
+  .sheen::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit];
+    background: linear-gradient(100deg, transparent 32%, rgba(255, 255, 255, 0.55) 50%, transparent 68%);
+    transform: translateX(-140%) skewX(-18deg);
+    animation: sheen 4.6s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(76, 109, 147, 0.32);
+    border-radius: 999px;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(76, 109, 147, 0.4) transparent;
+  }
+
+  .tap-none {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
