@@ -198,6 +198,9 @@ src/
 ├── store/         状态与运行时（引擎/决策/画布/React 的粘合层）
 │   ├── runtime.ts    rAF 主循环、落子阶段机、特效与音效触发
 │   └── useGameStore.ts
+├── lib/           与游戏无关的小工具
+│   ├── text.ts      文本截断、数值格式化
+│   └── utils.ts     cn() 类名合并（clsx + tailwind-merge）
 └── ui/            React 组件与 Canvas 渲染
     ├── render.ts     糖果方块/棋盘绘制
     ├── effects.ts    消行粒子、闪光、震动、浮动文字
